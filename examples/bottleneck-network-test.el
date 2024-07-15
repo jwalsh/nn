@@ -1,0 +1,21 @@
+(require 'ert)
+(require 'bottleneck-network)
+
+(ert-deftest test-bottleneck-network-structure ()
+  "Test the structure of the bottleneck network."
+  (let ((network (create-bottleneck-network)))
+    (should (= (length network) 4))
+    (should (= (length (nth 0 (nth 0 network))) 10))
+    (should (= (length (nth 1 (nth 0 network))) 20))
+    (should (= (length (nth 0 (nth 1 network))) 20))
+    (should (= (length (nth 1 (nth 1 network))) 5))
+    (should (= (length (nth 0 (nth 2 network))) 5))
+    (should (= (length (nth 1 (nth 2 network))) 20))
+    (should (= (length (nth 0 (nth 3 network))) 20))
+    (should (= (length (nth 1 (nth 3 network))) 10))
+    (should (eq (nth 2 (nth 0 network)) 'ops-relu))
+    (should (eq (nth 2 (nth 1 network)) 'ops-relu))
+    (should (eq (nth 2 (nth 2 network)) 'ops-relu))
+    (should (eq (nth 2 (nth 3 network)) 'identity))))
+
+(provide 'bottleneck-network-test)

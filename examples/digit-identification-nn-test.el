@@ -1,0 +1,21 @@
+(require 'ert)
+(require 'digit-identification-nn)
+
+(ert-deftest test-digit-identification-nn-structure ()
+  "Test the structure of the digit identification neural network."
+  (let ((network (create-digit-identification-nn)))
+    (should (= (length network) 4))
+    (should (= (length (nth 0 (nth 0 network))) 100))
+    (should (= (length (nth 1 (nth 0 network))) 80))
+    (should (= (length (nth 0 (nth 1 network))) 80))
+    (should (= (length (nth 1 (nth 1 network))) 10))
+    (should (= (length (nth 0 (nth 2 network))) 10))
+    (should (= (length (nth 1 (nth 2 network))) 8))
+    (should (= (length (nth 0 (nth 3 network))) 8))
+    (should (= (length (nth 1 (nth 3 network))) 3))
+    (should (eq (nth 2 (nth 0 network)) 'ops-relu))
+    (should (eq (nth 2 (nth 1 network)) 'ops-relu))
+    (should (eq (nth 2 (nth 2 network)) 'ops-relu))
+    (should (eq (nth 2 (nth 3 network)) 'identity))))
+
+(provide 'digit-identification-nn-test)

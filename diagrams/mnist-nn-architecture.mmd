@@ -1,0 +1,25 @@
+graph TD
+    I[Input Layer<br/>784 neurons<br/>28x28 flattened image] --> H1[Hidden Layer 1<br/>128 neurons<br/>ReLU]
+    H1 --> H2[Hidden Layer 2<br/>64 neurons<br/>ReLU]
+    H2 --> O[Output Layer<br/>10 neurons<br/>Softmax]
+    
+    style I fill:#f9f,stroke:#333,stroke-width:2px
+    style H1 fill:#bbf,stroke:#333,stroke-width:2px
+    style H2 fill:#bbf,stroke:#333,stroke-width:2px
+    style O fill:#bfb,stroke:#333,stroke-width:2px
+    
+    Input[28x28 MNIST Image] --> Flatten[Flatten to 784x1 vector]
+    Flatten --> I
+    O -->|Probability| D0[Digit 0]
+    O -->|Probability| D1[Digit 1]
+    O -->|Probability| D2[Digit 2]
+    O -->|Probability| D3[...]
+    O -->|Probability| D9[Digit 9]
+    
+    style Input fill:#ff9,stroke:#333,stroke-width:2px
+    style Flatten fill:#ff9,stroke:#333,stroke-width:2px
+    style D0 fill:#9f9,stroke:#333,stroke-width:2px
+    style D1 fill:#9f9,stroke:#333,stroke-width:2px
+    style D2 fill:#9f9,stroke:#333,stroke-width:2px
+    style D3 fill:#9f9,stroke:#333,stroke-width:2px
+    style D9 fill:#9f9,stroke:#333,stroke-width:2px

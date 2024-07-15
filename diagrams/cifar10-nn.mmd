@@ -1,0 +1,37 @@
+graph TD
+    I[Input Layer<br/>3072 neurons<br/>32x32x3 RGB image] --> H1[Hidden Layer 1<br/>1024 neurons<br/>ReLU]
+    H1 --> H2[Hidden Layer 2<br/>512 neurons<br/>ReLU]
+    H2 --> H3[Hidden Layer 3<br/>256 neurons<br/>ReLU]
+    H3 --> O[Output Layer<br/>10 neurons<br/>Softmax]
+    
+    style I fill:#f9f,stroke:#333,stroke-width:2px
+    style H1 fill:#bbf,stroke:#333,stroke-width:2px
+    style H2 fill:#bbf,stroke:#333,stroke-width:2px
+    style H3 fill:#bbf,stroke:#333,stroke-width:2px
+    style O fill:#bfb,stroke:#333,stroke-width:2px
+    
+    Input[32x32 RGB Image] --> Flatten[Flatten to 3072x1 vector]
+    Flatten --> I
+    O -->|Probability| C0[Airplane]
+    O -->|Probability| C1[Automobile]
+    O -->|Probability| C2[Bird]
+    O -->|Probability| C3[Cat]
+    O -->|Probability| C4[Deer]
+    O -->|Probability| C5[Dog]
+    O -->|Probability| C6[Frog]
+    O -->|Probability| C7[Horse]
+    O -->|Probability| C8[Ship]
+    O -->|Probability| C9[Truck]
+    
+    style Input fill:#ff9,stroke:#333,stroke-width:2px
+    style Flatten fill:#ff9,stroke:#333,stroke-width:2px
+    style C0 fill:#9f9,stroke:#333,stroke-width:2px
+    style C1 fill:#9f9,stroke:#333,stroke-width:2px
+    style C2 fill:#9f9,stroke:#333,stroke-width:2px
+    style C3 fill:#9f9,stroke:#333,stroke-width:2px
+    style C4 fill:#9f9,stroke:#333,stroke-width:2px
+    style C5 fill:#9f9,stroke:#333,stroke-width:2px
+    style C6 fill:#9f9,stroke:#333,stroke-width:2px
+    style C7 fill:#9f9,stroke:#333,stroke-width:2px
+    style C8 fill:#9f9,stroke:#333,stroke-width:2px
+    style C9 fill:#9f9,stroke:#333,stroke-width:2px

@@ -1,0 +1,21 @@
+(require 'ert)
+(require 'cifar10-nn)
+
+(ert-deftest test-cifar10-nn-structure ()
+  "Test the structure of the CIFAR-10 neural network."
+  (let ((network (create-cifar10-nn)))
+    (should (= (length network) 4))
+    (should (= (length (nth 0 (nth 0 network))) 3072))
+    (should (= (length (nth 1 (nth 0 network))) 1024))
+    (should (= (length (nth 0 (nth 1 network))) 1024))
+    (should (= (length (nth 1 (nth 1 network))) 512))
+    (should (= (length (nth 0 (nth 2 network))) 512))
+    (should (= (length (nth 1 (nth 2 network))) 256))
+    (should (= (length (nth 0 (nth 3 network))) 256))
+    (should (= (length (nth 1 (nth 3 network))) 10))
+    (should (eq (nth 2 (nth 0 network)) 'ops-relu))
+    (should (eq (nth 2 (nth 1 network)) 'ops-relu))
+    (should (eq (nth 2 (nth 2 network)) 'ops-relu))
+    (should (eq (nth 2 (nth 3 network)) 'identity))))
+
+(provide 'cifar10-nn-test)
