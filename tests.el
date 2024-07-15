@@ -36,3 +36,22 @@
 (let* ((s (ops-softmax (nn-forward-layers x model)))
        (loss (nn-crossentropy y s)))
   (message "Post training loss: %s" loss))
+
+
+;; ERT Tests
+
+(ert-deftest test-nn-layer-structure ()
+  "Test the structure of a neural network layer."
+  (let ((layer (nn-layer 10 5 'ops-relu)))
+    (should (= (length layer) 3))
+    (should (= (length (nth 0 layer)) 10))  ; Weight matrix
+    (should (= (length (nth 1 layer)) 5))   ; Bias vector
+    (should (eq (nth 2 layer) 'ops-relu)))) ; Activation function
+
+(ert-deftest test-model-structure ()
+  "Test the structure of the entire model."
+  (should (= (length model) 4))
+  (should (= (length (nth 0 (nth 0 model))) 100))
+  (should (= (length (nth 1 (nth 0 model))) 80))
+  (should (= (length (nth 0 (nth 3 model))) 8))
+  (should (= (length (nth 1 (nth 3 model))) 3)))

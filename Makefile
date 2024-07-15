@@ -31,6 +31,15 @@ clean:
 %.o: src/%.c
 	$(CC) $(CFLAGS) -fPIC -c src/utils.c $< 
 
+# Test
+test:
+	emacs -batch \
+		--eval "(add-to-list 'load-path \".\")" \
+		-l ert \
+		-l nn.el \
+		-l tests.el \
+		-f ert-run-tests-batch-and-exit
+
 # Convert Mermaid files to PNG
 mermaid: $(PNG_FILES)
 
