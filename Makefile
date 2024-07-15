@@ -1,6 +1,8 @@
 CC      = gcc
 LD      = gcc
-CFLAGS  = -ggdb3 -Wall -fPIC -I./include
+# TODO: Remove Homebrew specific include path
+EMACS_INCLUDE = /opt/homebrew/Cellar/emacs/29.4/include
+CFLAGS  = -ggdb3 -Wall -fPIC -I./include -I$(EMACS_INCLUDE)
 LDFLAGS =
 
 MERMAID_FILES := $(wildcard diagrams/*.mmd)
