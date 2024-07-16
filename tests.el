@@ -26,7 +26,8 @@
     (setf (nth 0 layer) (matrix-subtract w (matrix-scalar-mul 0.01 wg)))
     (setf (nth 1 layer) (matrix-subtract b (matrix-scalar-mul 0.01 bg)))))
 
-(dotimes (counter 100)
+
+(dotimes (counter 10)
   ;; This is the train step; essentially just do this as many times
   ;; as you want to train the model.
   (let ((grads (nn-gradient x y model)))
@@ -39,6 +40,11 @@
 
 
 ;; ERT Tests
+
+(ert-deftest test-matrixp ()
+  "Test the matrixp function."
+  (should (matrixp [[1 2 3] [4 5 6]]))
+  (should (not (matrixp [1 2 3]))))
 
 (ert-deftest test-nn-layer-structure ()
   "Test the structure of a neural network layer."
@@ -55,3 +61,4 @@
   (should (= (length (nth 1 (nth 0 model))) 80))
   (should (= (length (nth 0 (nth 3 model))) 8))
   (should (= (length (nth 1 (nth 3 model))) 3)))
+
